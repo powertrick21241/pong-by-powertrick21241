@@ -16,9 +16,13 @@ playeron = "PLAYER"
 playerton = "BOT"
 pwhy = pygame.font.SysFont("courier", 20, bold=True)
 ptwhy = pygame.font.SysFont("courier", 20, bold=True)
-buttomm= pygame.Rect(200,165,100,70)
-buttoll= pygame.Rect(500,165,100,70)
-buttopp= pygame.Rect(350,365,100,70)
+poi = pygame.font.SysFont("courier", 20, bold=True)
+buttomm= pygame.Rect(200,165,65,65)
+racchettomm= pygame.image.load("racchetta.png")
+buttoll= pygame.Rect(500,165,65,65)
+racchettoll = pygame.image.load("racchettat.png")
+buttopp= pygame.Rect(350,365,65,65)
+pallopp= pygame.image.load("palla.png")
 L_P_G_C_C_C= pygame.Rect(400, 300, 10, 10)
 speed = 1
 offset = (L_P_G_C_C_C.centery - player.centery) / (player.height / 2)
@@ -41,9 +45,15 @@ while run:
     screen.fill((0, 195, 0))
 
     if mod == "banana":
-        pygame.draw.rect(screen, (255,255,255), buttomm)
-        pygame.draw.rect(screen, (255,255,255), buttoll)
-        pygame.draw.rect(screen, (255,255,255), buttopp)
+        pygame.draw.rect(screen, (0,195,0), buttomm)
+        pygame.draw.rect(screen, (0,195,0), buttoll)
+        pygame.draw.rect(screen, (0, 195, 0), buttopp)
+        screen.blit(racchettomm, (157,145))
+        screen.blit(racchettoll, (467,145))
+        screen.blit(pallopp, (305,325))
+        racchettomm = pygame.transform.scale(racchettomm, (145, 145))
+        racchettoll = pygame.transform.scale(racchettoll, (145, 145))
+        pallopp = pygame.transform.scale(pallopp, (145, 145))
         if buttomm.collidepoint(mouse) and click[0] and not prev_click:
             if playeron == "PLAYER":
                 playeron = "BOT"
@@ -56,8 +66,10 @@ while run:
                 playerton = "PLAYER"
         plo=pwhy.render(str(playeron), False, (0,0,0))
         ptlo=ptwhy.render(str(playerton), False, (0,0,0))
-        screen.blit(plo, (200,165))
-        screen.blit(ptlo, (500,165))
+        cipenso=poi.render("START", False, (0,0,0))
+        screen.blit(plo, ((200 if playeron == "PLAYER" else 215),185))
+        screen.blit(ptlo, ((500 if playerton == "PLAYER" else 515),185))
+        screen.blit(cipenso, (360,385))
         if buttopp.collidepoint(mouse) and click[0] and not prev_click:
             mod = "game"
     prev_click= click[0]
@@ -87,7 +99,7 @@ while run:
             vy = offset * speed
             vx = -vx * 1.05
             R = random.randint(50,255)
-            G = random.randint(50,255)
+            G = random.randint(0,50)
             B = random.randint(50,255)
         if L_P_G_C_C_C.top <= 0 or L_P_G_C_C_C.bottom >= HEIGHT:
             vy = -vy
