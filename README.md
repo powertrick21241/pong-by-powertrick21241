@@ -1,4 +1,4 @@
-# READ ME
+# pong
 ## this is a difficult pygame version of pong 
 ## there is also the option of change player with bot
 # WARNING

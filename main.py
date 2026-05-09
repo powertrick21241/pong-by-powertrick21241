@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+import numpy as np
 
 pygame.init()
 WIDTH = 800
@@ -32,24 +33,23 @@ G = 255
 B = 255
 mod = "banana"
 run = True
-prev_click= False
 
 while run:
     key = pygame.key.get_pressed()
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    screen.fill((0, 0, 0))
+    screen.fill((0, 195, 0))
 
     if mod == "banana":
         pygame.draw.rect(screen, (255,255,255), buttomm)
         pygame.draw.rect(screen, (255,255,255), buttoll)
         pygame.draw.rect(screen, (255,255,255), buttopp)
-        if buttomm.collidepoint(mouse) and click[0]:
+        if buttomm.collidepoint(mouse) and click[0] and not prev_click:
             if playeron == "PLAYER":
                 playeron = "BOT"
             elif playeron == "BOT":
                 playeron = "PLAYER"
-        if buttoll.collidepoint(mouse) and click[0]:
+        if buttoll.collidepoint(mouse) and click[0] and not prev_click:
             if playerton == "PLAYER":
                 playerton = "BOT"
             elif playerton == "BOT":
@@ -58,23 +58,27 @@ while run:
         ptlo=ptwhy.render(str(playerton), False, (0,0,0))
         screen.blit(plo, (200,165))
         screen.blit(ptlo, (500,165))
-        if buttopp.collidepoint(mouse) and click[0]:
+        if buttopp.collidepoint(mouse) and click[0] and not prev_click:
             mod = "game"
+    prev_click= click[0]
     if mod == "game":
-        if key[pygame.K_w] and player.y > 0:
-            player.move_ip(0, -1)
-        if key[pygame.K_s] and player.y < HEIGHT - player.height:
-            player.move_ip(0, 1)
-
-        if key[pygame.K_UP] and playert.y > 0:
-            playert.move_ip(0, -1)
-        if key[pygame.K_DOWN] and playert.y < HEIGHT - playert.height:
-            playert.move_ip(0, 1)
+        if playeron == "PLAYER":
+            if key[pygame.K_w] and player.y > 0:
+                player.move_ip(0, -1)
+            if key[pygame.K_s] and player.y < HEIGHT - player.height:
+                player.move_ip(0, 1)
+        
+        if playerton == "PLAYER":
+            if key[pygame.K_UP] and playert.y > 0:
+                playert.move_ip(0, -1)
+            if key[pygame.K_DOWN] and playert.y < HEIGHT - playert.height:
+                playert.move_ip(0, 1)
 
         if L_P_G_C_C_C.colliderect(player):
             offset = (L_P_G_C_C_C.centery - player.centery) / (player.height / 2)
             vy = offset * speed
             vx = -vx * 1.05
+            #if 
             R = random.randint(50,255)
             G = random.randint(50,255)
             B = random.randint(50,255)
@@ -99,8 +103,8 @@ while run:
             vx = 1
             vy = 0
 
-        pygame.draw.rect(screen, (255,255,255), player)
-        pygame.draw.rect(screen, (255,255,255), playert)
+        pygame.draw.rect(screen, (255,0,0), player)
+        pygame.draw.rect(screen, (0,0,255), playert)
         pygame.draw.rect(screen, (R,G,B), L_P_G_C_C_C)
         score_text = scorev.render(str(score), False, (255, 255, 255))
         scoret_text = scoretv.render(str(scoret), False, (255, 255, 255))
