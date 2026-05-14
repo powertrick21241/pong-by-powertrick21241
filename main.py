@@ -96,7 +96,7 @@ while run:
                 occhio = L_P_G_C_C_C.centery + random.randint(-80,80)
             else:
                 occhio = L_P_G_C_C_C.centery
-            Q_E_S = 4 if score == scoret or scoret//score <= 4 else scoret//score
+            Q_E_S = 4 if score == scoret or (scoret//score <= 4 and score < scoret) else scoret//score
             V_B_O_P_M = random.randint(0,Q_E_S)
             if V_B_O_P_M <= Q_E_S//2:
                 if occhio < player.centery and player.y > 0:
@@ -113,7 +113,7 @@ while run:
                 occhio = L_P_G_C_C_C.centery + random.randint(-80,80)
             else:
                 occhio = L_P_G_C_C_C.centery
-            Q_E_S = 4 if scoret == score or score//scoret <= 4 else score//scoret
+            Q_E_S = 4 if scoret == score or (score//scoret <= 4 and scoret < score) else score//scoret
             V_B_O_P_M = random.randint(0,Q_E_S)
             if L_P_G_C_C_C.x >= WIDTH // 2 - 200:
                 if V_B_O_P_M <= Q_E_S//2:
