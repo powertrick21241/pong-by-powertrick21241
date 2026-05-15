@@ -92,7 +92,7 @@ while run:
             if key[pygame.K_s] and player.y < HEIGHT - player.height:
                 player.move_ip(0, 1)
         elif playeron == "BOT":
-            if random.randint(1,100) <= 10 and (score <= scoret-10 and scoret > score*2):
+            if random.randint(1,100) <= 10 and (scoret <= score-10 and score > scoret*2):
                 occhio = L_P_G_C_C_C.centery + random.randint(-80,80)
             else:
                 occhio = L_P_G_C_C_C.centery
@@ -109,7 +109,7 @@ while run:
             if key[pygame.K_DOWN] and playert.y < HEIGHT - playert.height:
                 playert.move_ip(0, 1)
         elif playerton == "BOT":
-            if random.randint(1,100) <= 10 and (scoret <= score-10 and score > scoret*2):
+            if random.randint(1,100) <= 10 and (score <= scoret-10 and scoret > score*2):
                 occhio = L_P_G_C_C_C.centery + random.randint(-80,80)
             else:
                 occhio = L_P_G_C_C_C.centery

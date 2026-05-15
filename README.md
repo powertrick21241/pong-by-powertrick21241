@@ -15,7 +15,7 @@
 #### più punti si fanno in più del bot diventa preciso e forte
 ## STORIA DI RACCHETTA PONG
 #### è un progetto del dodicenne Leandro Caschetto per kodland fatto con pygame(per installarlo c'è bisogno della versione di python 3.12)
-<img src="Screenshot 2026-05-14 165744.png" width="500">
+<img src="prima.png" width="500">
 
 #### in questo gioco ho realizzato la mia prima BEST PRACTICE
 <img src="matrimonio.png" width="500">
